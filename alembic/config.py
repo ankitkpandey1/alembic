@@ -373,6 +373,13 @@ class CommandLine(object):
                     "--verbose",
                     dict(action="store_true", help="Use more verbose output"),
                 ),
+                "print": (
+                    "--print",
+                    dict(
+                        action="store_true",
+                        help="Emit migration script on standard output",
+                    ),
+                ),
                 "resolve_dependencies": (
                     "--resolve-dependencies",
                     dict(

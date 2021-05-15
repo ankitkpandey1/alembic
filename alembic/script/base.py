@@ -650,6 +650,10 @@ class ScriptDirectory(object):
             **kw
         )
 
+        if kw.get('print'):
+            # Don't do post script generation tasks
+            return
+
         post_write_hooks = self.hook_config
         if post_write_hooks:
             write_hooks._run_hooks(path, post_write_hooks)

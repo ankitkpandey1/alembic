@@ -1,6 +1,7 @@
 import os
 import re
 import tempfile
+from sys import stdout
 
 from mako import exceptions
 from mako.template import Template
@@ -31,8 +32,15 @@ def template_to_file(template_file, dest, output_encoding, **kw):
             "template-oriented traceback." % fname
         )
     else:
-        with open(dest, "wb") as f:
-            f.write(output)
+
+        # Write to stdout if print is specified
+        # No need to write to file in this case
+        if  kw.get('print'):
+            stdout.write(output.decode(output_encoding))
+        else:
+            with open(dest, "wb") as f:
+                f.write(output)
+
 
 
 def coerce_resource_to_filename(fname):

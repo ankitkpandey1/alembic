@@ -446,6 +446,9 @@ class RevisionContext(object):
                 autogen_context, migration_script, template_args
             )
 
+        if self.command_args.get('print'):
+            template_args['print'] = True
+
         return self.script_directory.generate_revision(
             migration_script.rev_id,
             migration_script.message,
